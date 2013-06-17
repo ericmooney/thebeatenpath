@@ -3,22 +3,12 @@ class FavoritesController < ApplicationController
   # GET /favorites.json
   def index
     @favorites = Favorite.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @favorites }
-    end
   end
 
   # GET /favorites/1
   # GET /favorites/1.json
   def show
     @favorite = Favorite.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @favorite }
-    end
   end
 
   # GET /favorites/new
@@ -26,10 +16,6 @@ class FavoritesController < ApplicationController
   def new
     @favorite = Favorite.new
 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @favorite }
-    end
   end
 
   # GET /favorites/1/edit
@@ -42,14 +28,10 @@ class FavoritesController < ApplicationController
   def create
     @favorite = Favorite.new(params[:favorite])
 
-    respond_to do |format|
-      if @favorite.save
-        format.html { redirect_to @favorite, notice: 'Favorite was successfully created.' }
-        format.json { render json: @favorite, status: :created, location: @favorite }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
+    if @favorite.save
+      redirect_to @favorite, notice: 'Favorite was successfully created.'
+    else
+      render action: "new"
     end
   end
 
@@ -58,14 +40,10 @@ class FavoritesController < ApplicationController
   def update
     @favorite = Favorite.find(params[:id])
 
-    respond_to do |format|
-      if @favorite.update_attributes(params[:favorite])
-        format.html { redirect_to @favorite, notice: 'Favorite was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
+    if @favorite.update_attributes(params[:favorite])
+      redirect_to @favorite, notice: 'Favorite was successfully created.'
+    else
+      render action: "new"
     end
   end
 
@@ -74,10 +52,6 @@ class FavoritesController < ApplicationController
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
-
-    respond_to do |format|
-      format.html { redirect_to favorites_url }
-      format.json { head :no_content }
-    end
   end
+
 end
