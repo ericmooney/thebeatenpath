@@ -21,7 +21,7 @@ min-height: 100%;
 #gm_search_box {
   background-color: black;
   border-radius: 10px;
-  width: 65%;
+  width: 70%;
 
   h1 {
     color: white;
@@ -33,5 +33,9 @@ min-height: 100%;
 
   p {
     color: white;
+  }
+
+  #new_search {
+    text-align: center;
   }
 }
