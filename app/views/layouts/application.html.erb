@@ -1,39 +1,52 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <title>Thebeatenpath</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+<html lang="en">
+  <head>
+  	<meta charset="utf-8" />
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  	<title><%= content_for?(:title) ? yield(:title) : "Untitled" %></title>
 
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1>Off the Beaten Path</h1>
-      </li>
-      <li clas"divider"></li>
-    </ul>
-    <section class="top-bar-section">
-      <ul class="left">
-        <li class="active"><a href="/">Home</a></li>
-        <li clas"divider"></li>
-          <% if current_user %>
-            <li><a href="#">Logged in as <%= current_user.email %></a></li>
-            <li class="divider"></li>
-            <li><%= link_to "Log Out", logout_path %></li>
-            <li class="divider"></li>
-          <% else %>
-            <li><%= link_to "Signup", signup_path %></li>
-            <li class="divider"></li>
-            <li><%= link_to "Log In", login_path %></li>
-            <li class="divider"></li>
-          <% end %>
+  	<%= stylesheet_link_tag    "application" %>
+  	<%= javascript_include_tag "vendor/custom.modernizr" %>
+    <%= csrf_meta_tags %>
+  </head>
+
+  <body>
+
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1>Off the Beaten Path</h1>
+        </li>
+        <li class="divider"></li>
       </ul>
-  </nav>
+      <section class="top-bar-section">
+        <ul class="left">
+          <li class="active"><a href="/">Home</a></li>
+          <li class="divider"></li>
+            <% if current_user %>
+              <li><a href="#">Logged in as <%= current_user.email %></a></li>
+              <li class="divider"></li>
+              <li><%= link_to "Log Out", logout_path %></li>
+              <li class="divider"></li>
+            <% else %>
+              <li><%= link_to "Signup", signup_path %></li>
+              <li class="divider"></li>
+              <li><%= link_to "Log In", login_path %></li>
+              <li class="divider"></li>
+            <% end %>
+        </ul>
+    </nav>
 
-  <%= yield %>
+    <div id="gm_search_box">
+      <h1>Where would you like to go?</h1>
+      <p>From:</p>
+      <p>To:</p>
+    </div>
 
-</body>
+
+    <%= yield %>
+
+
+    <%= javascript_include_tag "application" %>
+  </body>
 </html>
