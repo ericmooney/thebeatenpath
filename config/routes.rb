@@ -3,11 +3,12 @@ Thebeatenpath::Application.routes.draw do
   match "login" => 'sessions#new', :as => "login"
   match "logout" => 'sessions#destroy', :as => "logout"
 
+  resources :searches
   resources :sessions, :except => [:edit, :update, :index]
   resources :favorites
   resources :users
 
-  root :to => 'favorites#index'
+  root :to => 'users#index'
 
 
   # The priority is based upon order of creation:
