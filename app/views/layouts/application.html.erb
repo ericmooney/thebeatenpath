@@ -8,19 +8,27 @@
 </head>
 <body>
 
-  <nav class="top_bar">
-      <ul class="nav_bar">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <li class="name">
+        <h1>Off the Beaten Path</h1>
+      </li>
+      <li clas"divider"></li>
+    </ul>
+    <section class="top-bar-section">
+      <ul class="left">
         <li class="active"><a href="/">Home</a></li>
-        <% if current_user %>
-          <li><a href="#">Logged in as <%= current_user.email %></a></li>
-          <li class="divider"></li>
-          <li><%= link_to "Log Out", logout_path %></li>
-          <li class="divider"></li>
-        <% else %>
-          <li><%= link_to "Signup", signup_path %></li>
-          <li class="divider"></li>
-          <li><%= link_to "Log In", login_path %></li>
-          <li class="divider"></li>
+        <li clas"divider"></li>
+          <% if current_user %>
+            <li><a href="#">Logged in as <%= current_user.email %></a></li>
+            <li class="divider"></li>
+            <li><%= link_to "Log Out", logout_path %></li>
+            <li class="divider"></li>
+          <% else %>
+            <li><%= link_to "Signup", signup_path %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Log In", login_path %></li>
+            <li class="divider"></li>
           <% end %>
       </ul>
   </nav>

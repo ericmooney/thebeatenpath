@@ -7,7 +7,7 @@ Thebeatenpath::Application.routes.draw do
   resources :favorites
   resources :users
 
-  root :to => 'favorites#index'
+  root :to => 'users#index'
 
 
   # The priority is based upon order of creation:
