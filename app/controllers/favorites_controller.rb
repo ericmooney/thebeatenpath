@@ -1,7 +1,5 @@
 class FavoritesController < ApplicationController
 
-  #for now, we will have a blanket "skip" so login not required on these pages
-    #we will need to revisit this later, though!
   skip_before_filter :require_authentication
 
   # GET /favorites

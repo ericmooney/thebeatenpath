@@ -3,6 +3,7 @@ Thebeatenpath::Application.routes.draw do
   match "login" => 'sessions#new', :as => "login"
   match "logout" => 'sessions#destroy', :as => "logout"
 
+  resources :searches
   resources :sessions, :except => [:edit, :update, :index]
   resources :favorites
   resources :users
