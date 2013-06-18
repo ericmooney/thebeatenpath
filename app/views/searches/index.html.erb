@@ -1,26 +1,25 @@
 <div class="row">
   <div id="gm_search_box" class="small-6 large-centered columns">
-      <h1>Where would you like to go?</h1>
+      <h1>The Beaten Path</h1>
       <hr>
-      <p>From:</p>
-      <p>To:</p>
-      <table>
-        <tr>
-          <th>All Favorites</th>
-          <th></th>
-        </tr>
 
-       <hr>
-      <% @favorites.each do |favorite| %>
-        <tr>
-          <td><%= favorite.name %></td>
-          <td><%= link_to 'Show', favorite %></td>
-        </tr>
-      <% end %>
-      </table>
-
+      <p id="new_search"><%= link_to 'Start a New Search', new_search_path %></p>
       <hr>
-      <%= link_to 'New Search', new_search_path %>
+
+      <h3 class="subheader">Top 10 Routes</h3>
+      <div class="module stacked">
+        <div>
+          <% @favorites.each do |favorite| %>
+          <ol>
+            <li>
+              <div class="twocol">
+                <div><%= favorite.name %></div>
+                <div><%= link_to 'Show', favorite %></div>
+              </div> <!-- "twocol-->
+            </li>
+          </ol>
+          <% end %>
+        </div>
     </div>
 </div>
 
