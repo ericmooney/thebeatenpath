@@ -3,6 +3,7 @@ class SearchesController < ApplicationController
   skip_before_filter :require_authentication
 
   def index
+    @favorites = Favorite.all
   end
 
   def show
