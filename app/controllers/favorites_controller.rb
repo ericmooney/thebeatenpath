@@ -1,32 +1,24 @@
 class FavoritesController < ApplicationController
 
   skip_before_filter :require_authentication, :only => [:show]
-  # GET /favorites
-  # GET /favorites.json
+  skip_before_filter :require_admin_authentication
+
   def index
     @favorites = Favorite.all
   end
 
-  # GET /favorites/1
-  # GET /favorites/1.json
   def show
     @favorite = Favorite.find(params[:id])
   end
 
-  # GET /favorites/new
-  # GET /favorites/new.json
   def new
     @favorite = Favorite.new
-
   end
 
-  # GET /favorites/1/edit
   def edit
     @favorite = Favorite.find(params[:id])
   end
 
-  # POST /favorites
-  # POST /favorites.json
   def create
     @favorite = Favorite.new(params[:favorite])
 
@@ -37,8 +29,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # PUT /favorites/1
-  # PUT /favorites/1.json
   def update
     @favorite = Favorite.find(params[:id])
 
@@ -49,8 +39,6 @@ class FavoritesController < ApplicationController
     end
   end
 
-  # DELETE /favorites/1
-  # DELETE /favorites/1.json
   def destroy
     @favorite = Favorite.find(params[:id])
     @favorite.destroy
