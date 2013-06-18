@@ -1,7 +1,6 @@
 class FavoritesController < ApplicationController
 
-  skip_before_filter :require_authentication
-
+  skip_before_filter :require_authentication, :only => [:show]
   # GET /favorites
   # GET /favorites.json
   def index

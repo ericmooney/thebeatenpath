@@ -12,9 +12,11 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_path, :notice => "Nice! You logged in."
+      redirect_to new_favorite_path, :notice => "Nice! You logged in."
+      # the flash notices are not set up in the view yet.
     else
       flash.now[:alert] = "Your email or password are not correct."
+      # the flash notices are not set up in the view yet.
       render :new
     end
   end
