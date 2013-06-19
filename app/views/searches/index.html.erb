@@ -1,12 +1,13 @@
 <div class="row">
   <div id="gm_search_box" class="small-6 large-centered columns">
-      <h1>The Beaten Path</h1>
+      <h3 class="subheader">The Beaten Path</h3>
       <hr>
 
-      <p id="new_search"><%= link_to 'Start a New Search', new_search_path %></p>
+      <p>Where are you?</p>
+      <p>Where do you want to go?</p>
       <hr>
 
-      <h3 id="top_ten_header" class="subheader">Top 10 Routes</h3>
+      <h5 id="top_ten_header" class="subheader">Top 10 Routes</h5>
         <div class="row">
           <% @favorites.each do |favorite| %>
           <ul id="top_ten">

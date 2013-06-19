@@ -17,4 +17,5 @@
 //= require_tree .
 
 
-$(function(){ $(document).foundation(); });
+Gmaps.oldOnload = window.load_foundation;
+window.load_foundation = function() { $(function(){ $(document).foundation(); }); };
