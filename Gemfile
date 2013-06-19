@@ -6,7 +6,11 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'pry-rails'
+gem 'pry-debugger'
+gem 'better_errors'
+gem 'binding_of_caller'
+gem 'meta_request'
 
 # Gems used only for assets and not required
 # in production environments by default.
