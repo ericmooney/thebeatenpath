@@ -11,12 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130618232740) do
+ActiveRecord::Schema.define(:version => 20130619235719) do
 
   create_table "favorites", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+    t.string   "from"
+    t.string   "to"
+    t.boolean  "is_saved",   :default => false
   end
 
   create_table "favorites_users", :force => true do |t|
