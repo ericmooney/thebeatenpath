@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
 
-  #for now, we will have a blanket "skip" so login not required on these pages
-  #we will need to revisit this later, though!
   skip_before_filter :require_authentication
+  skip_before_filter :require_admin_authentication
 
   def new
   end
@@ -12,7 +11,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to root_path, :notice => "Nice! You logged in."
+      redirect_to new_favorite_path, :notice => "Nice! You logged in."
     else
       flash.now[:alert] = "Your email or password are not correct."
       render :new

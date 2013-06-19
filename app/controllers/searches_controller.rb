@@ -1,6 +1,7 @@
 class SearchesController < ApplicationController
 
-  skip_before_filter :require_authentication
+  skip_before_filter :require_authentication, :only => [:index, :new, :create, :show]
+  skip_before_filter :require_admin_authentication, :only => [:index, :new, :create]
 
   def index
     @favorites = Favorite.all
