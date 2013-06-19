@@ -10,6 +10,7 @@
  *
  *= require_self
  *= require foundation_and_overrides
+ *= require gmaps4rails
  *= require_tree .
  *= require thebeatenpath.css
  */

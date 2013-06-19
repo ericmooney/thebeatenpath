@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require_dir ./gmaps4rails
 //= require_tree .
+
 
 $(function(){ $(document).foundation(); });

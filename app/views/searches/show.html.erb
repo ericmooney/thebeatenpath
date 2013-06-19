@@ -1,2 +1,14 @@
 <h1>Searches#show</h1>
-<p>Find me in app/views/searches/show.html.erb</p>
+
+<div class="row">
+  <div id="gm_show_box" class="large-centered-columns">
+
+    <%
+      data_hash = {"from" => "Toulon, France", "to" => "Paris, France"}
+      waypoints_array = ["Airport, Toulon, France", "Brest, France"]
+      options_hash = {"waypoints" => waypoints_array}
+    %>
+
+    <%= gmaps({ "direction" => {"data" => data_hash, "options" => options_hash}}) %>
+  </div>
+</div>

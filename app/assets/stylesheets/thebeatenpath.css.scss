@@ -39,3 +39,17 @@ min-height: 100%;
     text-align: center;
   }
 }
+
+#top_ten {
+  color: white;
+  list-style: none;
+}
+
+#top_ten li div:first-child {
+  text-align: center;
+}
+
+#top_ten_header {
+  text-align: center;
+  color: white;
+}

@@ -6,20 +6,23 @@
       <p id="new_search"><%= link_to 'Start a New Search', new_search_path %></p>
       <hr>
 
-      <h3 class="subheader">Top 10 Routes</h3>
-      <div class="module stacked">
-        <div>
+      <h3 id="top_ten_header" class="subheader">Top 10 Routes</h3>
+        <div class="row">
           <% @favorites.each do |favorite| %>
-          <ol>
+          <ul id="top_ten">
             <li>
-              <div class="twocol">
+              <div class="large-7 columns">
                 <div><%= favorite.name %></div>
+              </div>
+              <div class="large-5 columns">
                 <div><%= link_to 'Show', favorite %></div>
-              </div> <!-- "twocol-->
+              </div>
             </li>
-          </ol>
+          </ul>
           <% end %>
         </div>
+        <br>
+        <br>
     </div>
 </div>
 
