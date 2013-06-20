@@ -4,7 +4,26 @@
       <hr>
 
       <p>Where are you?</p>
-      <p>Where do you want to go?</p>
+
+      <%= form_for(@favorites) do |f| %>
+
+
+        <div class="field">
+          <%= f.label :title %><br />
+          <%= f.text_field :title %>
+        </div>
+
+        <div class="field">
+          <%= f.label :content %><br />
+          <%= f.text_area :content %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+      <% end %>
+
+      <p id="new_search"><%= link_to 'Start a New Search', new_search_path %></p>
       <hr>
 
       <h5 id="top_ten_header" class="subheader">Top 10 Routes</h5>
