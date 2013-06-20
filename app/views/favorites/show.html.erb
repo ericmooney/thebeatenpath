@@ -1,10 +1,17 @@
 <p id="notice"><%= notice %></p>
-
 <p>
   <b>Name:</b>
   <%= @favorite.name %>
 </p>
 
-
 <%= link_to 'Edit', edit_favorite_path(@favorite) %> |
-<%= link_to 'Back', favorites_path %>
+<%= link_to 'Destroy', @favorite, method: :delete %>
+
+<br>
+  <%
+    data_hash = {"from" => @favorite.from, "to" => @favorite.to}
+  %>
+  <%= gmaps({ "direction" => {"data" => data_hash}}) %>
+
+
+
