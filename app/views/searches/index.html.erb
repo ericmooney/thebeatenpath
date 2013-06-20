@@ -5,24 +5,6 @@
 
       <p>Where are you?</p>
 
-      <%= form_for(@favorites) do |f| %>
-
-
-        <div class="field">
-          <%= f.label :title %><br />
-          <%= f.text_field :title %>
-        </div>
-
-        <div class="field">
-          <%= f.label :content %><br />
-          <%= f.text_area :content %>
-        </div>
-
-        <div class="actions">
-          <%= f.submit %>
-        </div>
-      <% end %>
-
       <p id="new_search"><%= link_to 'Start a New Search', new_search_path %></p>
       <hr>
 
