@@ -17,7 +17,8 @@ class SearchesController < ApplicationController
   end
 
   def edit
-    @search = Search.find(params[:id])
+    @favorite = Favorite.find(params[:id])
+    @searches = Search.all
   end
 
   def create
@@ -39,7 +40,7 @@ class SearchesController < ApplicationController
     @search = Search.find(params[:id])
 
     if @search.update_attributes(params[:search])
-      redirect_to @search
+      redirect_to favorite_path(@favorite.id)
     else
       render action: "new"
     end

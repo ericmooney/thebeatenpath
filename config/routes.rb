@@ -6,7 +6,6 @@ Thebeatenpath::Application.routes.draw do
   get "favorites/:id/save/" => 'favorites#save', :as => 'save_favorite'
   get "searches/:id/new" => 'searches#new', :as => 'yelp_search'
 
-
   resources :searches
   resources :sessions, :except => [:edit, :update, :index]
   resources :favorites

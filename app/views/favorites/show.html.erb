@@ -2,16 +2,14 @@
 
 
 <p>Yelp Query</p>
-<% @favorite.searches.each do |x| %>
-  <%= x.name  %>
-  <%= x.favorite_id %>
+<% @favorite.searches.each do |search| %>
+  <%= search.name  %>
+  <%= search.favorite_id %>
   <% end %>
 <p>
   <b>Name:</b>
   <%= @favorite.name %>
 </p>
-
-<p>Yelp Query</p>
 
 <%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
 <%= link_to 'Edit', edit_favorite_path(@favorite) %> |

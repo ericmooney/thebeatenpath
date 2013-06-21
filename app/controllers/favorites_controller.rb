@@ -48,7 +48,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
 
     if @favorite.update_attributes(params[:favorite])
-      redirect_to @favorite, notice: 'Favorite was successfully created.'
+      redirect_to edit_search_path
     else
       render action: "new"
     end
