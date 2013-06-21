@@ -2,4 +2,13 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Back', favorites_path %>
+<!-- if logged in , show previous favorites with link to show it -->
+
+<% if !current_user.nil? %>
+  <% @user.favorites.each do |favorite| %>
+  <p><%= @favorite.name %></p>
+  <p>Route: From <%= favorite.from %> to <%= favorite.to %> |
+  <%= link_to 'Edit', edit_favorite_path(favorite.id) %> |
+  <%= link_to 'Destroy', favorite_path(favorite.id), method: :delete %>
+  <% end %>
+<% end %>

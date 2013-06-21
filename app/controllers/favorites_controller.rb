@@ -28,6 +28,10 @@ class FavoritesController < ApplicationController
 
   def new # searches gmaps for directions, submit goes to create/also homepage ****
     @favorite = Favorite.new
+
+    if !session[:user_id].blank?  #if the session has started i.e. the customer is logged in
+      @user = User.find(session[:user_id])  #grab the user object
+   end
   end
 
   def edit # edit field allows one to redo search with pre-pop params

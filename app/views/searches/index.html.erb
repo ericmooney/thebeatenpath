@@ -1,11 +1,17 @@
+<h1>Here are all of the things you want to do on your route</h1>
+
 <% @favorite.searches.each do |search| %>
-<%= search.name %>
-<%= search.favorite_id %>
-<%= link_to 'Edit', edit_search_path(search) %> |
-<%= link_to 'Destroy', search, method: :delete %> |
+<p><%= search.name %> - search_ID:
+<%= search.favorite_id %></p>
+<p><%= link_to 'Edit', edit_search_path(search) %> |
+<%= link_to 'Destroy', search, method: :delete %></p>
 
 <% end %>
 
+<%= link_to 'Add something new to do', yelp_search_path(@favorite.id) %>
 
+<br>
+
+<h4>To continue to map, click Submit</h4>
 <%= link_to 'Submit', favorite_path(@favorite.id) %>
 
