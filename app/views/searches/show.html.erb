@@ -3,20 +3,5 @@
 <div class="row">
   <div id="gm_show_box" class="large-centered-columns">
 
-
- <!--construct a client instance-->
-<% client = Yelp::Client.new %>
-
- <!--perform an address/location-based search for cream puffs nearby-->
-<% request = Yelp::V1::Review::Request::Location.new(
-             :address => '650 Mission St',
-             :city => 'San Francisco',
-             :state => 'CA',
-             :radius => 2,
-             :term => 'cream puffs',
-             :yws_id => 'YOUR_YWSID_HERE') %>
-
- <% response = client.search(request) %>
-
   </div>
 </div>

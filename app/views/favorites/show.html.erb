@@ -1,17 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 
-<p>Yelp Query</p>
+<h1>Yelp Query</h1>
 <% @favorite.searches.each do |x| %>
-  <%= x.name  %>
-  <%= x.favorite_id %>
+  <p>Yelp Search Name: <%= x.name  %></p>
+  <p>Favorite id:  <%= x.favorite_id %></p>
   <% end %>
-<p>
-  <b>Name:</b>
-  <%= @favorite.name %>
-</p>
+  <p><%= @top_names %></p>
+  <p><%= @top_addresses %></p>
 
-<p>Yelp Query</p>
+  <hr>
 
 <%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
 <%= link_to 'Edit', edit_favorite_path(@favorite) %> |

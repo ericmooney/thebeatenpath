@@ -8,6 +8,7 @@ class FavoritesController < ApplicationController
   end
 
   def show # shows gmaps results
+    binding.pry
     @favorite = Favorite.find(params[:id])
   end
 
