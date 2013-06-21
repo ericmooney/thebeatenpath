@@ -13,6 +13,7 @@ class SearchesController < ApplicationController
 
   def new
     @search = Search.new
+    @favorite = Favorite.find(params[:id])
   end
 
   def edit
@@ -21,9 +22,14 @@ class SearchesController < ApplicationController
 
   def create
     @search = Search.new(params[:search])
+    @favorite = Favorite.find(params[:favorite_id])
 
     if @search.save
-      redirect_to @search
+      @search.update_attributes(:favorite_id => @favorite.id)
+      #yelp comes from params -- 'pizza'
+      # need to update table columns: 'name' and 'address' from yelp query
+      #@search.update_attribtutes(:address)
+      redirect_to favorite_path(@favorite.id)
     else
       render action: "new"
     end
