@@ -8,8 +8,9 @@ class FavoritesController < ApplicationController
   end
 
   def show # shows gmaps results
-    binding.pry
     @favorite = Favorite.find(params[:id])
+    # @coords = @favorite.searches.map{|x| {"description" => x.name, "lng" => Geocoder.coordinates(x.address)[1].to_s, "lat" => Geocoder.coordinates(x.address)[0].to_s}}
+
   end
 
   def save

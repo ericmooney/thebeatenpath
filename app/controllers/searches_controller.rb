@@ -26,7 +26,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-    @search = Search.new(params[:search])
+
     @favorite = Favorite.find(params[:favorite_id])
 
     #construct a client instance
@@ -51,23 +51,19 @@ class SearchesController < ApplicationController
     # addresses of names
     addresses = response["businesses"].map do |business|
       if business["avg_rating"] >= 3.5 && business["name"] != nil
-        "address: #{business["address1"]} #{business["address2"]} #{business["state"]} #{business["zip"]}"
+        "#{business["address1"]}, #{business["address2"]}, #{business["state"]}, #{business["zip"]}"
       end
     end
 
     top_names = names.take(4)
     top_addresses = addresses.take(4)
 
-    if @search.save
-      @search.update_attributes(:favorite_id => @favorite.id)
-      #yelp comes from params -- 'pizza'
-      # need to update table columns: 'name' and 'address' from yelp query
-      #@search.update_attribtutes(:address)
-
-      redirect_to favorite_path(@favorite.id)
-    else
-      render action: "new"
+    # this creates an object of our searches by looping through the addresses we pass in
+    top_addresses.each_with_index do |address, i|
+      Search.create(address:address, yelp_query:top_names[i], favorite_id:@favorite.id)
     end
+
+    redirect_to favorite_path(@favorite.id)
   end
 
   def update

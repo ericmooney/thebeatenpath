@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require gmaps4rails
  *= require_tree .
  *= require thebeatenpath.css
  */
+
