@@ -3,12 +3,20 @@
 <div class="row">
   <div id="gm_show_box" class="large-centered-columns">
 
-    <%
-      data_hash = {"from" => "Toulon, France", "to" => "Paris, France"}
-      waypoints_array = ["Airport, Toulon, France", "Brest, France"]
-      options_hash = {"waypoints" => waypoints_array}
-    %>
 
-    <%= gmaps({ "direction" => {"data" => data_hash, "options" => options_hash}}) %>
+ <!--construct a client instance-->
+<% client = Yelp::Client.new %>
+
+ <!--perform an address/location-based search for cream puffs nearby-->
+<% request = Yelp::V1::Review::Request::Location.new(
+             :address => '650 Mission St',
+             :city => 'San Francisco',
+             :state => 'CA',
+             :radius => 2,
+             :term => 'cream puffs',
+             :yws_id => 'YOUR_YWSID_HERE') %>
+
+ <% response = client.search(request) %>
+
   </div>
 </div>

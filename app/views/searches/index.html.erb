@@ -1,30 +1,12 @@
+<!--This is our primary page for our Yelp Search, has form for search -->
+
 <div class="row">
   <div id="gm_search_box" class="small-6 large-centered columns">
-      <h3 class="subheader">The Beaten Path</h3>
-      <hr>
+      <p>This is our Yelp Query</p>
+      <p>What would you like to do along your trip</p>
 
-      <p>Where are you?</p>
+      <%= render 'form' %>
 
-      <p id="new_search"><%= link_to 'Start a New Search', new_search_path %></p>
-      <hr>
-
-      <h5 id="top_ten_header" class="subheader">Top 10 Routes</h5>
-        <div class="row">
-          <% @favorites.each do |favorite| %>
-          <ul id="top_ten">
-            <li>
-              <div class="large-7 columns">
-                <div><%= favorite.name %></div>
-              </div>
-              <div class="large-5 columns">
-                <div><%= link_to 'Show', favorite %></div>
-              </div>
-            </li>
-          </ul>
-          <% end %>
-        </div>
-        <br>
-        <br>
     </div>
 </div>
 

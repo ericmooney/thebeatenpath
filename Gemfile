@@ -44,3 +44,4 @@ gem 'unicorn'
 
 gem 'gmaps4rails'
 gem 'geocoder'
+gem 'yelpster'
