@@ -1,15 +1,7 @@
 <h1>Searches#edit</h1>
 <p>Find me in app/views/searches/edit.html.erb</p>
 
+<%= render 'form' %>
 
-<h1>Editing search query</h1>
-
-<% @favorite.searches.each do |search| %>
-  <input type='text' name="search[name]" value="<%= search.name %>">
-  <p>Query ID - <%= search.id %> </p>
-  <p>Favorite id- <%= search.favorite_id %> </p>
-<% end %>
-<button>Submit changes</button>
-<br>
 <%= link_to 'Show', @favorite %> |
 <%= link_to 'Back', favorites_path %>

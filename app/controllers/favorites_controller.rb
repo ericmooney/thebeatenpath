@@ -48,7 +48,7 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
 
     if @favorite.update_attributes(params[:favorite])
-      redirect_to edit_search_path
+      redirect_to yelp_search_index_path(@favorite.id)
     else
       render action: "new"
     end

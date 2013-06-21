@@ -3,8 +3,9 @@
 
 <p>Yelp Query</p>
 <% @favorite.searches.each do |search| %>
-  <%= search.name  %>
-  <%= search.favorite_id %>
+  <p><%= search.name  %></p>
+  <p>Search id - <%= search.id  %></p>
+  <p>Favorite id - <%= search.favorite_id %></p>
   <% end %>
 <p>
   <b>Name:</b>

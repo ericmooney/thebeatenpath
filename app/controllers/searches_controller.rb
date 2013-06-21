@@ -4,7 +4,12 @@ class SearchesController < ApplicationController
   skip_before_filter :require_admin_authentication
 
   def index
-    @searches = Search.all
+    @favorite = Favorite.find(params[:id])
+    if
+      favorite_path(@favorite.id)
+    else
+      render action: "new"
+    end
   end
 
   def show
@@ -17,8 +22,7 @@ class SearchesController < ApplicationController
   end
 
   def edit
-    @favorite = Favorite.find(params[:id])
-    @searches = Search.all
+    @search = Search.find(params[:id])
   end
 
   def create
@@ -38,9 +42,8 @@ class SearchesController < ApplicationController
 
   def update
     @search = Search.find(params[:id])
-
     if @search.update_attributes(params[:search])
-      redirect_to favorite_path(@favorite.id)
+      redirect_to yelp_search_index_path(@search.favorite.id)
     else
       render action: "new"
     end
