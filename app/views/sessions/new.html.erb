@@ -10,5 +10,15 @@
   <%= label_tag :password %>
   <%= password_field_tag :password %><br>
 
+  <% if !@favorite.nil? %>
+    <input type="hidden" name="favorite_id" value="<%= @favorite.id %>">
+  <% end %>
+
   <%= submit_tag %>
 <% end %>
+
+<hr>
+
+<h1>Sign up</h1>
+
+<%= render 'users/form', :local => {:@user => @user}  %>

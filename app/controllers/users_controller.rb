@@ -40,6 +40,10 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
+        if !params[:favorite_id].nil?
+          @favorite = Favorite.find(params[:favorite_id]) #if a favorite param comes in (i.e. page was rendered from a non-logged-in user that wanted to sign up)
+          @user.favorites << @favorite #push favorite into bridge table
+        end
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
