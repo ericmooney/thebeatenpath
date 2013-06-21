@@ -1,14 +1,11 @@
-<!--This is our primary page for our Yelp Search, has form for search -->
+<% @favorite.searches.each do |search| %>
+<%= search.name %>
+<%= search.favorite_id %>
+<%= link_to 'Edit', edit_search_path(search) %> |
+<%= link_to 'Destroy', search, method: :delete %> |
 
-<div class="row">
-  <div id="gm_search_box" class="small-6 large-centered columns">
-      <p>This is our Yelp Query</p>
-      <p>What would you like to do along your trip</p>
-
-      <%= render 'form' %>
-
-    </div>
-</div>
+<% end %>
 
 
+<%= link_to 'Submit', favorite_path(@favorite.id) %>
 

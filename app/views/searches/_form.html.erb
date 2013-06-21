@@ -16,8 +16,9 @@
     <%= f.text_field :name %>
   </div>
 
+<% if !@favorite.nil? %>
   <input type="hidden" name="favorite_id" value="<%= @favorite.id %>">
-
+<% end %>
 
   <div class="actions">
     <%= f.submit %>
