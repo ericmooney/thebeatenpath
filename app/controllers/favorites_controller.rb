@@ -11,6 +11,21 @@ class FavoritesController < ApplicationController
     @favorite = Favorite.find(params[:id])
   end
 
+  def save
+    @favorite = Favorite.find(params[:id])
+
+    if !session[:user_id].blank?  #if the session has started i.e. the customer is logged in
+      @user = User.find(session[:user_id])  #grab the user object
+      @user.favorites << @favorite  #update the bridge table to associate the user and favorite
+      @favorite.update_attributes(:is_saved => true) # marks the favorite as having been saved (may be redundant)
+      redirect_to root_path
+    else
+      @user = User.new
+      @favorite = Favorite.find(params[:id]) #if not logged in, grab the favorite object to be used after the login..
+      render new_session_path
+    end
+  end
+
   def new # searches gmaps for directions, submit goes to create/also homepage ****
     @favorite = Favorite.new
   end

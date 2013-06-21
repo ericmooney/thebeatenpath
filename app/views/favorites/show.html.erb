@@ -4,8 +4,10 @@
   <%= @favorite.name %>
 </p>
 
+<%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
 <%= link_to 'Edit', edit_favorite_path(@favorite) %> |
 <%= link_to 'Destroy', @favorite, method: :delete %>
+
 
 <br>
   <%

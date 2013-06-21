@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   has_and_belongs_to_many :favorites
 
-  attr_accessible :email, :password, :password_confirmation
+  attr_accessible :email, :password, :password_confirmation, :favorite_id
 
   validates :email, :uniqueness => true
 end

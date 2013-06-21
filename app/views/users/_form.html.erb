@@ -23,6 +23,11 @@
     <%= f.label :password_confirmation %><br />
     <%= f.password_field :password_confirmation %>
   </div>
+
+  <% if !@favorite.nil? %>
+    <input type="hidden" name="favorite_id" value="<%= @favorite.id %>">
+  <% end %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
