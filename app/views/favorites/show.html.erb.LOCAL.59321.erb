@@ -34,25 +34,9 @@
   <input class="marker" type="hidden" value="<%= search.address %>">
 <% end %>
 
-
-<% @favorite.searches.each do |search| %>
-  <input class="waypoints" type="hidden" value="<%= search.address %>">
-<% end %>
-
 <input id="start" type="hidden" value="<%= @favorite.from %>">
 <input id="end" type="hidden" value="<%= @favorite.to %>" onload="calcRoute();">
-<<<<<<< HEAD
 <div id="map-canvas"></div>
-=======
-
-<div>
-  <div id="map-canvas"></div>
-  <div id="control_panel">
-    <div id="directions_panel"></div>
-  </div>
-</div>
-
->>>>>>> 45c9c0a7de73a932554476876bd4d1851442534f
 <!--   <%#
 
     coords = Geocoder.coordinates(@favorite.searches.first.address)

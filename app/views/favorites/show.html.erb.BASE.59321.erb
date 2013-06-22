@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<p>Yelp Query</p>
+<% @favorite.searches.each do |search| %>
+  <p><%= search.yelp_query  %></p>
+  <p>Search id - <%= search.id  %></p>
+  <p>Favorite id - <%= search.favorite_id %></p>
+  <p>Address - <%= search.address %>
+  <% end %>
+
+
+<%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
+<%= link_to 'Edit', edit_favorite_path(@favorite) %>
+<%= link_to 'Destroy', @favorite, method: :delete %>
+<br>
+
+<input id="start" type="hidden" value="<%= @favorite.from %>">
+<input id="end" type="hidden" value="<%= @favorite.to %>" onload="calcRoute();">
+<button onclick="calcRoute();">Submit</button>
+<div id="map-canvas"></div>
+<!--   <%#
+
+    coords = Geocoder.coordinates(@favorite.searches.first.address)
+    @markers = [{"lat" => coords[0].to_s, "lng" => coords[1].to_s}] %>
+
+
+ -->
