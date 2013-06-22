@@ -2,17 +2,26 @@
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
+var geocoder;
+// var geocoder;
+
 
 function initialize() {
+  geocoder = new google.maps.Geocoder();
+  console.log('...' + geocoder);
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
     zoom: 6,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
     center: chicago
-  }
+  };
+
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
   directionsDisplay.setMap(map);
+  calcRoute();
+  codeAddress();
+
 }
 
 function calcRoute() {
@@ -24,20 +33,9 @@ function calcRoute() {
   for (var i = 0; i < waypoints_hidden_inputs.length; i++) {
     waypts.push({
       location:waypoints_hidden_inputs[i].value,
-      stopover:true
+      stopover:false
     });
   }
-  console.log(waypts);
-
-
-  // var checkboxArray = document.getElementById('waypoints');
-  // for (var i = 0; i < checkboxArray.length; i++) {
-  //   if (checkboxArray.options[i].selected == true) {
-  //     waypts.push({
-  //         location:checkboxArray[i].value,
-  //         stopover:true});
-  //   }
-  // }
 
   var request = {
       origin: start,
@@ -64,8 +62,34 @@ function calcRoute() {
   });
 }
 
-google.maps.event.addDomListener(window, 'load', initialize);
+function codeAddress() {
+  var yelp_address = [];
+
+  var address= $('.address');
+
+  address.each(function(el){
+    yelp_address.push({location: this.value});
+  });
+
+  for (var i = 0; i < yelp_address.length; i++) {
+    geocoder.geocode( { 'address': yelp_address[i].location}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+        });
+      }
+       else {
+        alert('Geocode was not successful for the following reason: ' + status);
+      }
+    });
+  }
+}
+
+
+
+// google.maps.event.addDomListener(window, 'load', initialize);
 
 $(document).ready(function() {
-  calcRoute();
-})
+google.maps.event.addDomListener(window, 'load', initialize);
+});

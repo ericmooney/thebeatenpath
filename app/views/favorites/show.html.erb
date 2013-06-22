@@ -14,13 +14,16 @@
 <%= link_to 'Destroy', @favorite, method: :delete %>
 <br>
 
+<% @favorite.searches.each do |search| %>
+  <input class="address" type="hidden" value="<%= search.address %>">
+<% end %>
 
 <% @favorite.searches.each do |search| %>
   <input class="waypoints" type="hidden" value="<%= search.address %>">
 <% end %>
 
 <input id="start" type="hidden" value="<%= @favorite.from %>">
-<input id="end" type="hidden" value="<%= @favorite.to %>" onload="calcRoute();">
+<input id="end" type="hidden" value="<%= @favorite.to %>">
 
 <div>
   <div id="map-canvas"></div>
@@ -28,11 +31,3 @@
     <div id="directions_panel"></div>
   </div>
 </div>
-
-<!--   <%#
-
-    coords = Geocoder.coordinates(@favorite.searches.first.address)
-    @markers = [{"lat" => coords[0].to_s, "lng" => coords[1].to_s}] %>
-
-
- -->
