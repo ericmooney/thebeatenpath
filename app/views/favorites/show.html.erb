@@ -1,22 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<p>Yelp Query</p>
-<% @favorite.searches.each do |search| %>
-  <p><%= search.yelp_query  %></p>
-  <p>Search id - <%= search.id  %></p>
-  <p>Favorite id - <%= search.favorite_id %></p>
-  <p>Address - <%= search.address %>
+<h1>Yelp Query</h1>
+<table border="1">
+  <tr>
+    <th>Query</th>
+    <th>Search ID</th>
+    <th>Fav ID</th>
+    <th>Address</th>
+    <th>Lat</th>
+    <th>Long</th>
+  </tr>
+  <% @favorite.searches.each do |search| %>
+  <tr>
+    <td><%= search.yelp_query  %></td>
+    <td><%= search.id  %></td>
+    <td><%= search.favorite_id %></td>
+    <td><%= search.address %></td>
+    <td><%= search.latitude  %></td>
+    <td><%= search.longitude  %></td>
+  </tr>
   <% end %>
+</table>
 
+<hr>
 
 <%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
 <%= link_to 'Edit', edit_favorite_path(@favorite) %>
 <%= link_to 'Destroy', @favorite, method: :delete %>
-<br>
+<hr>
+
+
+<% @favorite.searches.each do |search| %>
+  <input class="marker" type="hidden" value="<%= search.address %>">
+<% end %>
 
 <input id="start" type="hidden" value="<%= @favorite.from %>">
 <input id="end" type="hidden" value="<%= @favorite.to %>" onload="calcRoute();">
-<button onclick="calcRoute();">Submit</button>
 <div id="map-canvas"></div>
 <!--   <%#
 
