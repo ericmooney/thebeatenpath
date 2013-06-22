@@ -2,19 +2,22 @@
 
 <p>Yelp Query</p>
 <% @favorite.searches.each do |search| %>
-  <p><%= search.name  %></p>
+  <p><%= search.yelp_query  %></p>
   <p>Search id - <%= search.id  %></p>
   <p>Favorite id - <%= search.favorite_id %></p>
+  <p>Address - <%= search.address %>
   <% end %>
-  <p><%= @top_names %></p>
-  <p><%= @top_addresses %></p>
+
 
 <%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
 <%= link_to 'Edit', edit_favorite_path(@favorite) %>
 <%= link_to 'Destroy', @favorite, method: :delete %>
-
-
 <br>
+
+<input id="start" type="hidden" value="<%= @favorite.from %>">
+<input id="end" type="hidden" value="<%= @favorite.to %>" onload="calcRoute();">
+<button onclick="calcRoute();">Submit</button>
+<div id="map-canvas"></div>
 <!--   <%#
 
     coords = Geocoder.coordinates(@favorite.searches.first.address)

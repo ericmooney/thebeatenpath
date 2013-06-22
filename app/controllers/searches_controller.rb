@@ -26,7 +26,7 @@ class SearchesController < ApplicationController
   end
 
   def create
-
+    @search = Search.new(params[:search])
     @favorite = Favorite.find(params[:favorite_id])
 
     #construct a client instance
@@ -36,31 +36,23 @@ class SearchesController < ApplicationController
     request = Yelp::V1::Review::Request::Location.new(
                  :address => @favorite["from"],
                  :radius => 2,
-                 :term => @search,
+                 :term => @search.yelp_query,
                  :yws_id => '5iVHiSXheAs_WzdKzcYE7g')
 
     response = client.search(request)
 
-    # 4 names with avg score >= 3.5
-    names = response["businesses"].map  do |business|
-      if business["avg_rating"] >= 3.5 && business["name"] != nil
+    four_businesses = response["businesses"].take(4)
+
+    names = four_businesses.map  do |business|
         business["name"]
-      end
     end
 
-    # addresses of names
-    addresses = response["businesses"].map do |business|
-      if business["avg_rating"] >= 3.5 && business["name"] != nil
-        "#{business["address1"]}, #{business["address2"]}, #{business["state"]}, #{business["zip"]}"
-      end
+    addresses = four_businesses.map do |business|
+        "#{business["address1"]} #{business["address2"]} #{business["state"]} #{business["zip"]}"
     end
 
-    top_names = names.take(4)
-    top_addresses = addresses.take(4)
-
-    # this creates an object of our searches by looping through the addresses we pass in
-    top_addresses.each_with_index do |address, i|
-      Search.create(address:address, yelp_query:top_names[i], favorite_id:@favorite.id)
+    addresses.each_with_index do |address, i|
+      Search.create(address:address, yelp_query:names[i], favorite_id:@favorite.id)
     end
 
     redirect_to favorite_path(@favorite.id)

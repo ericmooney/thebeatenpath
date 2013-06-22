@@ -11,6 +11,11 @@ background-size: cover;
 min-height: 100%;
 }
 
+div#map-canvas {
+  width: 1000px;
+  height: 600px;
+}
+
 .name {
   padding: 0 20px 0 20px;
 }
