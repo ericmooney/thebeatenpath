@@ -42,6 +42,5 @@ gem 'unicorn'
 # To use debugger
 # gem 'debugger'
 
-gem 'gmaps4rails'
 gem 'geocoder'
 gem 'yelpster'

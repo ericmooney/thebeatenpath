@@ -5,10 +5,15 @@ html {
 
 body
 {
-background-image:url('roadtrip2.JPG');
+// background-image:url('roadtrip2.JPG');
 background-color:#cccccc;
 background-size: cover;
 min-height: 100%;
+}
+
+div#map-canvas {
+  width: 1000px;
+  height: 600px;
 }
 
 .name {

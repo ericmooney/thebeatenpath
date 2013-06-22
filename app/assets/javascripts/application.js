@@ -12,9 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_dir ./gmaps4rails
 //= require_tree .
 
 
 // Gmaps.oldOnload = window.load_foundation;
 // window.load_foundation = function() { $(function(){ $(document).foundation(); }); };
+// ******** Remember to add back gmap4rails js file if we use it again *****
