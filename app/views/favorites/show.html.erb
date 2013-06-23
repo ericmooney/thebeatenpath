@@ -1,23 +1,33 @@
-
-
+<% if !@favorite.name.blank? %>
+  <h1>"<%= @favorite.name %>" route</h1>
+  <% else %>
+  <h1>Your route<h1>
+<% end %>
 
       <% @favorite.searches.each do |search| %>
         <input class="address" type="hidden" value="<%= search.address %>">
       <% end %>
 
+
+
+      <input id="start" type="hidden" value="<%= @favorite.from %>">
+      <input id="end" type="hidden" value="<%= @favorite.to %>">
+
       <% @favorite.searches.each do |search| %>
         <input class="waypoints" type="hidden" value="<%= search.address %>">
       <% end %>
 
-      <input id="start" type="hidden" value="<%= @favorite.from %>">
-      <input id="end" type="hidden" value="<%= @favorite.to %>">
+
 
 <div id="gm_show_box" class="row">
   <div id="map-canvas" class="large-8 columns"></div>
   <div id="directions_panel" class="large-4 columns"></div>
   <div class="row">
-
+    <%if @favorite.is_saved == false %>
       <div class="small-2 columns"><%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %></div>
+    <% else %>
+        <div class="small-2 columns"></div>
+    <% end %>
       <div class="small-2 columns"><%= link_to 'Edit', edit_favorite_path(@favorite) %></div>
       <div class="small-3 columns"><%= link_to 'Delete', @favorite, method: :delete %></div>
 

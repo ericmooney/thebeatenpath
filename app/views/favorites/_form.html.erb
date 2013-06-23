@@ -10,8 +10,12 @@
       </ul>
     </div>
   <% end %>
-
-<div class="row ">
+  <div class="row ">
+    <div class="field large-7 large-centered columns">
+      <%= f.label :name %><br />
+      <%= f.text_field :name %>
+    </div>
+  </div><div class="row ">
   <div class="field large-7 large-centered columns">
     <%= f.label :from %><br />
     <%= f.text_field :from %>
