@@ -8,3 +8,48 @@
   </div>
 </div>
 
+      <input id="start" type="hidden" value="<%= @favorite.from %>">
+      <input id="end" type="hidden" value="<%= @favorite.to %>">
+
+<div id="gm_show_box" class="row">
+  <div id="map-canvas" class="large-8 columns"></div>
+  <div id="directions_panel" class="large-4 columns"></div>
+</div> <!-- map and directions -->
+
+<input id="route_points" type="hidden" value="<%= @favorite.from %>">
+
+<% content_for :extra_js do %>
+<script type="text/javascript">
+    setTimeout(function() {do_route_pts()}, 5000);
+    var do_route_pts = function() {
+
+      console.log("route pts array:");
+      console.log("it is a(n) " + typeof(route_pts));
+      console.log(route_pts);
+      console.log("----------");
+      var route_string = "[";
+      console.log("try to loop.....");
+      $.each(route_pts, function(k,v) {
+        if (k > 0) {
+          route_string += " , "
+        }
+        console.log("in your loop... with:");
+        console.log(k);
+        console.log(v);
+        console.log("---------------");
+        route_string += "[" + v[0] + "," + v[1] + "]";
+      });
+      route_string += "]"
+      console.log("route string:");
+      console.log(route_string);
+      console.log("----------");
+      var hidden_input = $('<input type="hidden">')
+      hidden_input.attr('name', 'route_pts');
+      hidden_input.attr('id', 'route_pts');
+      hidden_input.attr('value', route_string);
+      $('#new_search').append(hidden_input);
+      // document.write('<param name="route_pts" value="' + route_pts + '">');
+    };
+</script>
+<% end %>
+<!-- NOTE - this has to  -->

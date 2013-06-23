@@ -2,14 +2,13 @@ var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
 var geocoder;
-
+// var geocoder;
 
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
-
   var mapOptions = {
     zoom: 6,
     mapTypeId: google.maps.MapTypeId.ROADMAP,
@@ -17,15 +16,14 @@ function initialize() {
   };
 
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-
   directionsDisplay.setMap(map);
   calcRoute();
   codeAddress();
   directionsDisplay.setPanel(document.getElementById('directions_panel'));
 
   var control = document.getElementById('control');
-  // control.style.display = 'block';
-  // maps.controls[google.maps.ControlPosition.TOP_CENTER].push(control);
+  control.style.display = 'block';
+  maps.controls[google.maps.ControlPosition.TOP_CENTER].push(control)
 
 } // initialize
 
@@ -41,42 +39,18 @@ function calcRoute() {
       stopover:false
     });
   }
-  var request = { // keep as 'request'
+
+  var request = {
       origin: start,
       destination: end,
       waypoints: waypts,
       optimizeWaypoints: true,
       travelMode: google.maps.TravelMode.DRIVING
   };
-
-  // var dists=[trip_length]; // atl.  trip_length determines how frequently we drop markers along route.
-  // var trip_length =
-  //   if trip_distance <= 7, then trip_length == 1
-  //     if trip_distance > 7 && trip_distance <= 50, then trip_length == 5
-  //       if trip_distance > 50, then trip_length == 10;
-
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
       var route = response.routes[0];
-
-
-      var points = route.overview_path;
-      console.log(points);
-      console.log(points.length);
-
-      for(var i = 0; i < points.length; i+=10 ) {
-        // here on looping through the array of points along the route, returning every 10th point and returning the latitude and longitude:
-        var latitude = points[i].jb;
-        console.log(points[i].jb);
-
-        var longitude = points[i].kb;
-        console.log(points[i].kb);
-        // ** put these into an array ****
-      }
-
-
-
       var summaryPanel = document.getElementById('directions_panel');
       summaryPanel.innerHTML = '';
       // For each route, display summary information.
@@ -89,7 +63,6 @@ function calcRoute() {
       }
     }
   });
-  console.log(map);
 } // calcRoute
 
 function codeAddress() {
@@ -121,6 +94,4 @@ function codeAddress() {
 
 $(document).ready(function() {
 google.maps.event.addDomListener(window, 'load', initialize);
-
-
 });

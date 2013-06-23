@@ -28,11 +28,26 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(params[:search])
     @favorite = Favorite.find(params[:favorite_id])
+    @route_pts = params[:route_pts].split(" ,")
+    binding.pry
+
+    # from our lat/long array (in favorites.js): [[lat1, long1], [lat2, lat2]...]
+     # 1. loop through and return the corresponding lat/long of points along the route.
+     # 2. Then pass these lats and longs to our 'request' object...
 
     #construct a client instance
     client = Yelp::Client.new
 
     # perform an address/location-based search from the params
+    # request = Yelp::V2::Search::Request::GeoPoint.new(
+    #             :term => "cream puffs",
+    #             :latitude => 37.788022,
+    #             :longitude => -122.399797,
+    #             :consumer_key => 'YOUR_CONSUMER_KEY',
+    #             :consumer_secret => 'YOUR_CONSUMER_SECRET',
+    #             :token => 'YOUR_TOKEN',
+    #             :token_secret => 'YOUR_TOKEN_SECRET')
+
     request = Yelp::V1::Review::Request::Location.new(
                  :address => @favorite["from"],
                  :radius => 0.1,
