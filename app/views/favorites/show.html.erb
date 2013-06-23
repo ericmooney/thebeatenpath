@@ -1,7 +1,7 @@
 <% if !@favorite.name.blank? %>
   <h1>"<%= @favorite.name %>" route</h1>
   <% else %>
-  <h1>Your route<h1>
+  <h1>Your route</h1>
 <% end %>
 
       <% @favorite.searches.each do |search| %>
@@ -29,6 +29,7 @@
         <div class="small-2 columns"></div>
     <% end %>
       <div class="small-2 columns"><%= link_to 'Edit', edit_favorite_path(@favorite) %></div>
+      <div class="small-2 columns"><%= link_to 'Try a new route', root_path %></div>
       <div class="small-3 columns"><%= link_to 'Delete', @favorite, method: :delete %></div>
 
   </div>
