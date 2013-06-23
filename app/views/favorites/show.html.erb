@@ -1,33 +1,59 @@
-<p id="notice"><%= notice %></p>
-
-<p>Yelp Query</p>
-<% @favorite.searches.each do |search| %>
-  <p><%= search.yelp_query  %></p>
-  <p>Search id - <%= search.id  %></p>
-  <p>Favorite id - <%= search.favorite_id %></p>
-  <p>Address - <%= search.address %>
-  <% end %>
-
-
-<%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
-<%= link_to 'Edit', edit_favorite_path(@favorite) %>
-<%= link_to 'Destroy', @favorite, method: :delete %>
-<br>
-
-<% @favorite.searches.each do |search| %>
-  <input class="address" type="hidden" value="<%= search.address %>">
-<% end %>
-
-<% @favorite.searches.each do |search| %>
-  <input class="waypoints" type="hidden" value="<%= search.address %>">
-<% end %>
-
-<input id="start" type="hidden" value="<%= @favorite.from %>">
-<input id="end" type="hidden" value="<%= @favorite.to %>">
-
-<div>
-  <div id="map-canvas"></div>
-  <div id="control_panel">
-    <div id="directions_panel"></div>
+<div id="link_btns" class="row">
+    <div class="btn">
+    <%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
+  </div>
+  <div class="btn">
+    <%= link_to 'Edit', edit_favorite_path(@favorite) %>
+  </div>
+  <div class="btn">
+    <%= link_to 'Destroy', @favorite, method: :delete %>
   </div>
 </div>
+
+      <% @favorite.searches.each do |search| %>
+        <input class="address" type="hidden" value="<%= search.address %>">
+      <% end %>
+
+      <% @favorite.searches.each do |search| %>
+        <input class="waypoints" type="hidden" value="<%= search.address %>">
+      <% end %>
+
+      <input id="start" type="hidden" value="<%= @favorite.from %>">
+      <input id="end" type="hidden" value="<%= @favorite.to %>">
+
+<div id="gm_show_box" class="row">
+
+  <div id="map-canvas" class="large-8 columns"></div>
+  <div id="directions_panel" class="large-4 columns"></div>
+
+</div> <!-- map and directions -->
+
+<p id="notice"><%= notice %></p>
+
+<div class="row">
+  <h1>Yelp Query</h1>
+  <table border="1">
+    <tr>
+      <th>Query</th>
+      <th>Search ID</th>
+      <th>Fav ID</th>
+      <th>Address</th>
+      <th>Lat</th>
+      <th>Long</th>
+    </tr>
+    <% @favorite.searches.each do |search| %>
+    <tr>
+      <td><%= search.yelp_query  %></td>
+      <td><%= search.id  %></td>
+      <td><%= search.favorite_id %></td>
+      <td><%= search.address %></td>
+      <td><%= search.latitude  %></td>
+      <td><%= search.longitude  %></td>
+    </tr>
+    <% end %>
+  </table>
+
+  <hr>
+</div> <!-- table -->
+
+<hr>

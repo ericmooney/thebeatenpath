@@ -11,15 +11,19 @@
     </div>
   <% end %>
 
-  <div class="field">
+<div class="row ">
+  <div class="field large-7 large-centered columns">
     <%= f.label :from %><br />
     <%= f.text_field :from %>
   </div>
-  <div class="field">
+</div>
+<div class="row">
+  <div class="field large-7 large-centered columns">
     <%= f.label :to %><br />
     <%= f.text_field :to %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+</div>
+  <div class="actions large-2 large-centered columns">
+    <%= f.submit  "Submit" %>
   </div>
 <% end %>

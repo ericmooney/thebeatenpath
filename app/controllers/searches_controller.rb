@@ -35,7 +35,7 @@ class SearchesController < ApplicationController
     # perform an address/location-based search from the params
     request = Yelp::V1::Review::Request::Location.new(
                  :address => @favorite["from"],
-                 :radius => 2,
+                 :radius => 0.1,
                  :term => @search.yelp_query,
                  :yws_id => '5iVHiSXheAs_WzdKzcYE7g')
 

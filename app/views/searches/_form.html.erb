@@ -11,16 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :yelp_query %><br />
-    <%= f.text_field :yelp_query %>
-  </div>
+  <div class="row">
+    <div class="field large-6 large-centered columns">
+      <div class="field">
+        <%= f.label :yelp_query %><br />
+        <%= f.text_field :yelp_query %>
+      </div>
+    </div>
 
-<% if !@favorite.nil? %>
-  <input type="hidden" name="favorite_id" value="<%= @favorite.id %>">
-<% end %>
+    <% if !@favorite.nil? %>
+    <input type="hidden" name="favorite_id" value="<%= @favorite.id %>">
+    <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+    <div class="actions">
+      <%= f.submit "Submit" %>
+    </div>
   </div>
 <% end %>

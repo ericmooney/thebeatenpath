@@ -1,4 +1,3 @@
-
 var directionsDisplay;
 var directionsService = new google.maps.DirectionsService();
 var map;
@@ -8,7 +7,6 @@ var geocoder;
 
 function initialize() {
   geocoder = new google.maps.Geocoder();
-  console.log('...' + geocoder);
   directionsDisplay = new google.maps.DirectionsRenderer();
   var chicago = new google.maps.LatLng(41.850033, -87.6500523);
   var mapOptions = {
@@ -21,8 +19,13 @@ function initialize() {
   directionsDisplay.setMap(map);
   calcRoute();
   codeAddress();
+  directionsDisplay.setPanel(document.getElementById('directions_panel'));
 
-}
+  var control = document.getElementById('control');
+  control.style.display = 'block';
+  maps.controls[google.maps.ControlPosition.TOP_CENTER].push(control)
+
+} // initialize
 
 function calcRoute() {
   var start = document.getElementById('start').value;
@@ -60,7 +63,7 @@ function calcRoute() {
       }
     }
   });
-}
+} // calcRoute
 
 function codeAddress() {
   var yelp_address = [];
@@ -84,11 +87,10 @@ function codeAddress() {
       }
     });
   }
-}
+} // codeAddress
 
 
 
-// google.maps.event.addDomListener(window, 'load', initialize);
 
 $(document).ready(function() {
 google.maps.event.addDomListener(window, 'load', initialize);

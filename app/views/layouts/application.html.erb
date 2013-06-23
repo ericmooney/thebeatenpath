@@ -13,15 +13,10 @@
   <body>
 
     <nav class="top-bar">
-      <ul class="title-area">
-        <li class="name">
-          <h1 class="subheader">The Beaten Path</h1>
-        </li>
-        <li class="divider"></li>
-      </ul>
+      <div class="row">
       <section class="top-bar-section">
         <ul class="left">
-          <li class="active"><a class="icon" style="white" href="/"><%= image_tag("home_icon.png") %></a></li>
+          <li class="active"><a href="/"><%= image_tag("white_home.png") %></a></li>
           <li class="divider"></li>
             <% if current_user %>
               <li><a href="#">Logged in as <%= current_user.email %></a></li>

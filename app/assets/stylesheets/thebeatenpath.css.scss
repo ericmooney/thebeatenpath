@@ -5,15 +5,34 @@ html {
 
 body
 {
-// background-image:url('roadtrip2.JPG');
+background-image:url('roadtrip2.JPG');
 background-color:#cccccc;
 background-size: cover;
 min-height: 100%;
 }
 
-div#map-canvas {
-  width: 1000px;
-  height: 600px;
+#gm_show_box {
+  background-color: rgba(0, 0, 0, 0.75);
+  height: 550px;
+  padding: 20px 25px 25px 25px;
+  border-radius: 10px;
+  width: 200%;
+
+}
+#map-canvas {
+  width: 600px;
+  height: 500px;
+  float: left;
+  border: 1px solid white;
+  margin-right: 0px;
+}
+
+#directions_panel {
+  background-color: white;
+  overflow: auto;
+  float: right;
+  border: 1px solid white;
+  margin-left: 0px;
 }
 
 .name {
@@ -23,8 +42,17 @@ div#map-canvas {
   color: white;
 }
 
+.top-bar .top-bar-section #home_button {
+  background: rgba(0, 0, 0, 0.70);
+}
+
+#spacer {
+  padding-left: 15px;
+}
+
 #gm_search_box {
-  background-color: black;
+  padding: 10px 50px 30px 50px;
+  background: rgba(0, 0, 0, 0.80);
   border-radius: 10px;
   width: 70%;
 
@@ -60,6 +88,15 @@ div#map-canvas {
 }
 
 hr {
+  align: center;
+}
 
-  align: right;
+#link_btns {
+  display: inline;
+}
+.btn {
+  width: 30px;
+  height: 30px;
+  background-color: blue;
+  margin: 10px;
 }
