@@ -1,17 +1,21 @@
-<h1>Here are all of the things you want to do on your route</h1>
+<div class="row">
+  <div class="small-6 large-centered columns gm_search_box">
+    <h3>Here are all of the things you want to do on your route</h3>
 
-<% @favorite.searches.each do |search| %>
-<p><%= search.name %> - search_ID:
-  <%= search.favorite_id %>
-  <%= link_to 'Edit', edit_search_path(search) %> |
-  <%= link_to 'Destroy', search, method: :delete %></p>
+      <% @favorite.searches.each do |search| %>
+      <p><%= search.name %> - search_ID:
+        <%= search.favorite_id %>
+        <%= link_to 'Edit', edit_search_path(search) %> |
+        <%= link_to 'Destroy', search, method: :delete %></p>
 
-<% end %>
+      <% end %>
 
-<%= link_to 'Add something new to do', yelp_search_path(@favorite.id) %>
+      <%= link_to 'Add something new to do', yelp_search_path(@favorite.id) %>
 
-<br>
+      <br>
 
-<h4>To continue to map, click Submit</h4>
-<%= link_to 'Submit', favorite_path(@favorite.id) %>
+      <h4>To continue to map, click Submit</h4>
+      <%= link_to 'Submit', favorite_path(@favorite.id) %>
+  </div>
+</div>
 

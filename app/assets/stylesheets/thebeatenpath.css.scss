@@ -50,19 +50,21 @@ min-height: 100%;
   padding-left: 15px;
 }
 
-#gm_search_box {
+.gm_search_box {
   padding: 10px 50px 30px 50px;
   background: rgba(0, 0, 0, 0.80);
   border-radius: 10px;
-  width: 70%;
+  width: 80%;
 
-  h3 {
+  h3, h4 {
     color: white;
     padding: 15px;
     text-align: center;
     font-family: Georgia, serif;
     margin-bottom: -25px;
   }
+
+
 
   p {
     color: white;
@@ -99,4 +101,8 @@ hr {
   height: 30px;
   background-color: blue;
   margin: 10px;
+}
+
+#sign_in {
+  border-right: 1px solid white;
 }

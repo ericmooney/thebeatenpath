@@ -1,14 +1,5 @@
-<div id="link_btns" class="row">
-    <div class="btn">
-    <%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %>
-  </div>
-  <div class="btn">
-    <%= link_to 'Edit', edit_favorite_path(@favorite) %>
-  </div>
-  <div class="btn">
-    <%= link_to 'Destroy', @favorite, method: :delete %>
-  </div>
-</div>
+
+
 
       <% @favorite.searches.each do |search| %>
         <input class="address" type="hidden" value="<%= search.address %>">
@@ -22,10 +13,15 @@
       <input id="end" type="hidden" value="<%= @favorite.to %>">
 
 <div id="gm_show_box" class="row">
-
   <div id="map-canvas" class="large-8 columns"></div>
   <div id="directions_panel" class="large-4 columns"></div>
+  <div class="row">
 
+      <div class="small-2 columns"><%= link_to 'Save to Favorites', save_favorite_path(:user => {:favorite_id => @favorite.id}) %></div>
+      <div class="small-2 columns"><%= link_to 'Edit', edit_favorite_path(@favorite) %></div>
+      <div class="small-3 columns"><%= link_to 'Delete', @favorite, method: :delete %></div>
+
+  </div>
 </div> <!-- map and directions -->
 
 <p id="notice"><%= notice %></p>

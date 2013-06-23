@@ -1,24 +1,29 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<div class="row">
+  <div class="large-centered columns gm_search_box">
+    <div class ="row">
+      <div id="sign_in" class="large-6 columns">
+        <h4>Sign up</h4>
 
-<h1>Log In</h1>
+        <%= render 'users/form', :local => {:@user => @user}  %>
+      </div>
 
-<%= form_tag sessions_path do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email, params[:email] %><br>
+      <div id="log-in" class="large-6 columns">
+        <h4>Log In</h4>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password %><br>
+        <%= form_tag sessions_path do %>
+          <%= label_tag :email %>
+          <%= text_field_tag :email, params[:email] %><br>
 
-  <% if !@favorite.nil? %>
-    <input type="hidden" name="favorite_id" value="<%= @favorite.id %>">
-  <% end %>
+          <%= label_tag :password %>
+          <%= password_field_tag :password %><br>
 
-  <%= submit_tag %>
-<% end %>
+          <% if !@favorite.nil? %>
+            <input type="hidden" name="favorite_id" value="<%= @favorite.id %>">
+          <% end %>
 
-<hr>
-
-<h1>Sign up</h1>
-
-<%= render 'users/form', :local => {:@user => @user}  %>
+          <%= submit_tag %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
