@@ -12,8 +12,11 @@
 
 <% if !current_user.nil? %>
   <% @user.favorites.each do |favorite| %>
-  <p><%= @favorite.name %></p>
-  <p>Route: From <%= favorite.from %> to <%= favorite.to %> |
+  <p>Name: <%= favorite.name %> |
+  Route: From <%= favorite.from %> to <%= favorite.to %> |
+  Looking for:  <%= favorite.searches.pluck("name").join(", ") %></p>
+
+  <%= link_to 'Show', favorite_path(favorite.id) %> |
   <%= link_to 'Edit', edit_favorite_path(favorite.id) %> |
   <%= link_to 'Destroy', favorite_path(favorite.id), method: :delete %>
   <% end %>

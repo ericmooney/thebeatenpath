@@ -5,11 +5,6 @@ class SearchesController < ApplicationController
 
   def index
     @favorite = Favorite.find(params[:id])
-    if
-      favorite_path(@favorite.id)
-    else
-      render action: "new"
-    end
   end
 
   def show
@@ -51,7 +46,7 @@ class SearchesController < ApplicationController
     request = Yelp::V1::Review::Request::Location.new(
                  :address => @favorite["from"],
                  :radius => 0.1,
-                 :term => @search.yelp_query,
+                 :term => @search.name,
                  :yws_id => '5iVHiSXheAs_WzdKzcYE7g')
 
     response = client.search(request)
@@ -67,7 +62,7 @@ class SearchesController < ApplicationController
     end
 
     addresses.each_with_index do |address, i|
-      Search.create(address:address, yelp_query:names[i], favorite_id:@favorite.id)
+      Search.create(name:@search.name, address:address, yelp_query:names[i], favorite_id:@favorite.id)
     end
 
     redirect_to favorite_path(@favorite.id)
@@ -86,7 +81,7 @@ class SearchesController < ApplicationController
     @search = Search.find(params[:id])
 
     if @search.destroy
-      redirect_to root_path
+      redirect_to yelp_search_index_path(@search.favorite.id)
     else
       render action: "new"
     end
