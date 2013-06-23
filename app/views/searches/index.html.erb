@@ -3,9 +3,9 @@
     <h3>Here are all of the things you want to do on your route</h3>
 
       <% @favorite.searches.each do |search| %>
-      <p><%= search.name %> - search_ID:
-        <%= search.favorite_id %>
-        <%= link_to 'Edit', edit_search_path(search) %> |
+      <p>
+        <%= search.name %>
+        - <%= search.yelp_query %>
         <%= link_to 'Destroy', search, method: :delete %></p>
 
       <% end %>
