@@ -5,19 +5,25 @@
 
 <%= render 'form' %>
 
+  <% if !current_user.nil? %>
+
+      <br>
+      <hr>
+
+      <% @user.favorites.each do |favorite| %>
+      <p id="favorite_show">Name: <%= favorite.name %> |
+      Route: From <%= favorite.from %> to <%= favorite.to %> |
+   <!--    Looking for:  <%#= favorite.searches.pluck("name").join(", ") %> -->
+
+      <%= link_to 'Show', favorite_path(favorite.id) %> |
+      <%= link_to 'Edit', edit_favorite_path(favorite.id) %> |
+      <%= link_to 'Destroy', favorite_path(favorite.id), method: :delete %></p>
+      <% end %>
+  <% end %>
+
   </div>
 </div>
 
 <!-- if logged in , show previous favorites with link to show it -->
 
-<% if !current_user.nil? %>
-  <% @user.favorites.each do |favorite| %>
-  <p>Name: <%= favorite.name %> |
-  Route: From <%= favorite.from %> to <%= favorite.to %> |
-  Looking for:  <%= favorite.searches.pluck("name").join(", ") %></p>
 
-  <%= link_to 'Show', favorite_path(favorite.id) %> |
-  <%= link_to 'Edit', edit_favorite_path(favorite.id) %> |
-  <%= link_to 'Destroy', favorite_path(favorite.id), method: :delete %>
-  <% end %>
-<% end %>
