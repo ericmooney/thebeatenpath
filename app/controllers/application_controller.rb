@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
   def require_authentication
     if current_user.nil?
-      redirect_to root_path, :alert => "You must be logged in."
+      redirect_to  root_path, :alert => "You must be logged in."
     end
   end
 

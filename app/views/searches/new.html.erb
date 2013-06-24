@@ -11,16 +11,17 @@
       <input id="start" type="hidden" value="<%= @favorite.from %>">
       <input id="end" type="hidden" value="<%= @favorite.to %>">
 
-<div id="gm_show_box" class="row">
-  <div id="map-canvas" class="large-8 columns"></div>
-  <div id="directions_panel" class="large-4 columns"></div>
-</div> <!-- map and directions -->
+
+  <div class="row" display="none" type="hidden" visibility="hidden">
+    <div id="map-canvas" display="none" visibility="hidden"></div>
+  </div> <!-- map and directions -->
+
 
 <input id="route_points" type="hidden" value="<%= @favorite.from %>">
 
 <% content_for :extra_js do %>
 <script type="text/javascript">
-    setTimeout(function() {do_route_pts()}, 5000);
+    setTimeout(function() {do_route_pts()}, 3000);
     var do_route_pts = function() {
 
       console.log("route pts array:");

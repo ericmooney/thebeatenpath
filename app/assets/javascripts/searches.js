@@ -65,7 +65,7 @@ function calcRoute() {
       // console.log(points);
       // console.log(points.length);
 
-      for(var i = 0; i < points.length; i+=10 ) {
+      for(var i = 0; i < points.length; i+=20 ) {
         // here on looping through the array of points along the route, returning every 10th point and returning the latitude and longitude:
         var latitude = points[i].jb;
         // console.log(points[i].jb);

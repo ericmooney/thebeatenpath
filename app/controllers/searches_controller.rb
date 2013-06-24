@@ -23,47 +23,57 @@ class SearchesController < ApplicationController
   def create
     @search = Search.new(params[:search])
     @favorite = Favorite.find(params[:favorite_id])
-    @route_pts = params[:route_pts].split(" ,")
-    binding.pry
+    @route_pts = JSON.parse(params[:route_pts]) # in searches.js we've added a 5 sec delay; thus if you press the search button too soon it will return 'nil'
 
-    # from our lat/long array (in favorites.js): [[lat1, long1], [lat2, lat2]...]
-     # 1. loop through and return the corresponding lat/long of points along the route.
-     # 2. Then pass these lats and longs to our 'request' object...
-
-    #construct a client instance
     client = Yelp::Client.new
 
-    # perform an address/location-based search from the params
-    # request = Yelp::V2::Search::Request::GeoPoint.new(
-    #             :term => "cream puffs",
-    #             :latitude => 37.788022,
-    #             :longitude => -122.399797,
-    #             :consumer_key => 'YOUR_CONSUMER_KEY',
-    #             :consumer_secret => 'YOUR_CONSUMER_SECRET',
-    #             :token => 'YOUR_TOKEN',
-    #             :token_secret => 'YOUR_TOKEN_SECRET')
+    @route_pts.each do |yelp_request|
+      latitude = yelp_request.first
+      longitude = yelp_request.last
 
-    request = Yelp::V1::Review::Request::Location.new(
-                 :address => @favorite["from"],
-                 :radius => 0.1,
-                 :term => @search.name,
-                 :yws_id => '5iVHiSXheAs_WzdKzcYE7g')
+      request = Yelp::V2::Search::Request::GeoPoint.new(
+                  :term => @search.name,
+                  :latitude => latitude,
+                  :longitude => longitude,
+                  :radius=> 1,
+                  :consumer_key => '_DSGrzT4u6XIzFvBfj_5Ug',
+                  :consumer_secret => 'U5RrGpJ_iDYnrFW96sgD5ZmeVYY',
+                  :token => 'evy3estBADFkFXGVKnIgGhANTWw7TJMm',
+                  :token_secret => 'SLHhpJZ0xIE92CN6LeiM3_MeS0I')
 
-    response = client.search(request)
+      response = client.search(request)
 
-    four_businesses = response["businesses"].take(4)
+      two_businesses = response["businesses"].take(2)
 
-    names = four_businesses.map  do |business|
-        business["name"]
+      names = two_businesses.map  do |business|
+          business["name"]
+      end
+
+      # addresses = two_businesses.map do |business|
+      #     Geocoder.search("#{latitude}, #{longitude}")
+      # end
+
+
+      addresses = two_businesses.map do |business|
+          business["location"]["display_address"].join(' , ')
+      end
+
+
+
+      addresses.each_with_index do |address, i|
+        Search.create(name:@search.name, yelp_query:names[i], favorite_id:@favorite.id, latitude:latitude, longitude:longitude, address:addresses[i])
+      end
+
+
+
+
     end
 
-    addresses = four_businesses.map do |business|
-        "#{business["address1"]} #{business["address2"]} #{business["state"]} #{business["zip"]}"
-    end
-
-    addresses.each_with_index do |address, i|
-      Search.create(name:@search.name, address:address, yelp_query:names[i], favorite_id:@favorite.id)
-    end
+    # request = Yelp::V1::Review::Request::Location.new(
+    #              :address => @favorite["from"],
+    #              :radius => 0.1,
+    #              :term => @search.name,
+    #              :yws_id => '5iVHiSXheAs_WzdKzcYE7g')
 
     redirect_to favorite_path(@favorite.id)
   end
