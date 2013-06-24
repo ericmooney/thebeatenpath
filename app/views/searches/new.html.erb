@@ -3,18 +3,17 @@
     <h3>What would you like to do on your way?</h3>
     <hr>
 
-<%= render 'form' %>
+      <%= render 'form' %>
 
+    <hr>
+    <div class="row">
+      <div id="map-canvas" class="small-6 large-centered columns map_show"></div>
+    </div>
   </div>
 </div>
 
       <input id="start" type="hidden" value="<%= @favorite.from %>">
       <input id="end" type="hidden" value="<%= @favorite.to %>">
-
-
-  <div class="row" display="none" type="hidden" visibility="hidden">
-    <div id="map-canvas" display="none" visibility="hidden"></div>
-  </div> <!-- map and directions -->
 
 
 <input id="route_points" type="hidden" value="<%= @favorite.from %>">
