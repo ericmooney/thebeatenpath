@@ -1,3 +1,5 @@
+(After checking in our project this morning, there is something wrong with the Yelp API keys.  I'll fix it is as soon as I can.)
+
 First big project for Eric and Tom at General Assembly's Web Development Immersive.  The Beaten Path is a roadtrip planner using the Googlemaps and Yelp API's. Unlike typical directions based maps that plot points of interest to a single spot, we created multiple, hidden waypoints along the route of the map and passed each of these along to the Yelp search so that a user can find points of interest all along the route. 
 
 (Due to our need to fix our interaction with our calls to the Yelp API, it only works on medium-sized distances like across San Francisco.)
