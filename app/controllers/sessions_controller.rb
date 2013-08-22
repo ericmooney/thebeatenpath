@@ -1,8 +1,5 @@
 class SessionsController < ApplicationController
 
-  skip_before_filter :require_authentication
-  skip_before_filter :require_admin_authentication
-
   def new
     @user = User.new
   end

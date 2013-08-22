@@ -36,10 +36,10 @@ class SearchesController < ApplicationController
                   :latitude => latitude,
                   :longitude => longitude,
                   :radius=> 1,
-                  :consumer_key => '_DSGrzT4u6XIzFvBfj_5Ug',
-                  :consumer_secret => 'U5RrGpJ_iDYnrFW96sgD5ZmeVYY',
-                  :token => 'evy3estBADFkFXGVKnIgGhANTWw7TJMm',
-                  :token_secret => 'SLHhpJZ0xIE92CN6LeiM3_MeS0I')
+                  :consumer_key => "<%= ENV['CONSUMER_KEY'] %>",
+                  :consumer_secret => "<%= ENV['CONSUMER_SECRET'] %>",
+                  :token => "<%= ENV['TOKEN'] %>",
+                  :token_secret => "<%= ENV['TOKEN_SECRET'] %>")
 
       response = client.search(request)
 

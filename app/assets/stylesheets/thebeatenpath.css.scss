@@ -113,6 +113,6 @@ hr {
   margin: 30px;
 }
 
-.map_show {
-  margin-left: 50px;
+#map-canvas.map_show {
+  display: none;
 }
